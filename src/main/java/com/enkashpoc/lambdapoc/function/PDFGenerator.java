@@ -18,8 +18,6 @@ import freemarker.template.TemplateException;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.Base64;
-import java.util.HashMap;
-import java.util.Map;
 
 public class PDFGenerator implements RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent> {
 
@@ -30,6 +28,8 @@ public class PDFGenerator implements RequestHandler<APIGatewayProxyRequestEvent,
         ByteArrayOutputStream oOut = new ByteArrayOutputStream();
 
         LambdaLogger logger = context.getLogger();
+
+        responseEvent.setStatusCode(500);
 
         try {
 
@@ -45,23 +45,18 @@ public class PDFGenerator implements RequestHandler<APIGatewayProxyRequestEvent,
             responseEvent.setStatusCode(200);
 
         } catch (JsonProcessingException jsonProcessingException) {
-            responseEvent.setStatusCode(500);
             responseEvent.setBody(Constant.ERROR_PARSING_JSON);
             logger.log(jsonProcessingException.getLocalizedMessage());
         } catch (InvalidReferenceException missingParamEx) {
-            responseEvent.setStatusCode(500);
             responseEvent.setBody(Constant.ERROR_MISSING_PARAM);
             logger.log(missingParamEx.getLocalizedMessage());
         } catch (IOException | TemplateException templateEx) {
-            responseEvent.setStatusCode(500);
             responseEvent.setBody(Constant.ERROR_ACCESSING_S3);
             logger.log(templateEx.getLocalizedMessage());
         } catch (AmazonServiceException awsEx) {
-            responseEvent.setStatusCode(500);
             responseEvent.setBody(Constant.ERROR_ACCESSING_S3);
             logger.log(awsEx.getLocalizedMessage());
         } catch (Exception ex) {
-            responseEvent.setStatusCode(500);
             responseEvent.setBody(Constant.ERROR_MESSAGE_GENERIC);
             logger.log(ex.getLocalizedMessage());
         } finally {

@@ -2,9 +2,9 @@ package com.enkashpoc.lambdapoc;
 public class Constant
 {
 
-    public static final String S3_BUCKET_FREEMARKER_TEMPLATE = "";
-    public static final String S3_BUCKET_GENERATED_PDF = "pdfcontainerenkash";
-    public static final String S3_TEMPLATE_URL = "https://psdtemplates.s3.amazonaws.com/";
+    //Moved to Lambda Env
+/*  public static final String S3_BUCKET_GENERATED_PDF = "pdfcontainerenkash";
+    public static final String S3_TEMPLATE_URL = "https://psdtemplates.s3.amazonaws.com/";*/
     public static final String OUTPUT_FILE_PREFIX = "GeneratedPdf";
 
     public static final String ERROR_MESSAGE_GENERIC = "Error occurred while generating PDF. Please verify the input and try again.";

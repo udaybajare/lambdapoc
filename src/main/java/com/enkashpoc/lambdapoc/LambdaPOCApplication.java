@@ -4,9 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class LambdapocApplication {
+public class LambdaPOCApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(LambdapocApplication.class, args);
+		SpringApplication.run(LambdaPOCApplication.class, args);
 	}
 }
