@@ -7,6 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Credit Card Statement Email</title>
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,600&display=swap" rel="stylesheet">
+	<style>
+		td {text-align:center;}
+	</style>
 </head>
 
 <body
@@ -61,7 +64,23 @@
                 </div>
             </div>
         </div>
-        <br><br>
+		
+		<table style="width:100%;">
+			<tr>
+				<th>ID</th><th>Desc</th><th>Amount</th><th>Date</th>
+			</tr>
+			<#list transactionList as tran>
+				<tr>
+					<td>${tran.id}</td><td>${tran.tranDesc}</td><td>${tran.tranAmount}</td><td>${tran.tranDate}</td>
+				</tr>
+			<#else>
+				<tr>
+					<td colspan="4"> No transaction to display</td>
+				</tr>
+			</#list>
+		</table>
+        
+		<br><br>
         Click here to view the statement & make payment against your EnKash Card : <a href="${paymentLink}"
                                                                                             style="outline: none; border: none;">${paymentLink}</a>
         <br><br>
