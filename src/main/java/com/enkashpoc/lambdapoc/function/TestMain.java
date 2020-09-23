@@ -16,7 +16,7 @@ public class TestMain
     public static void main(String[] args) {
         try
         {
-            HashMap <String, String> params = new HashMap();
+            HashMap <String, Object> params = new HashMap();
 
             params.put("username", "Uday Kumar");
             params.put("period","4 Years");

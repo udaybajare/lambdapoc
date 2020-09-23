@@ -8,6 +8,7 @@ import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyRequestEvent;
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyResponseEvent;
 import com.enkashpoc.lambdapoc.Constant;
 import com.enkashpoc.lambdapoc.model.APIRequest;
+import com.enkashpoc.lambdapoc.model.TransactionDetails;
 import com.enkashpoc.lambdapoc.utils.FreemarkerHelper;
 import com.enkashpoc.lambdapoc.utils.PDFHelper;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -17,7 +18,7 @@ import freemarker.template.TemplateException;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.util.Base64;
+import java.util.*;
 
 public class PDFGenerator implements RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent> {
 
@@ -69,7 +70,7 @@ public class PDFGenerator implements RequestHandler<APIGatewayProxyRequestEvent,
         return responseEvent;
     }
 
-    APIRequest mapRequest(APIGatewayProxyRequestEvent inputRequest) throws JsonProcessingException {
+    APIRequest mapRequest(APIGatewayProxyRequestEvent inputRequest) throws IOException {
         APIRequest apiRequest = null;
 
         String jsonString = new String(Base64.getDecoder().decode(inputRequest.getBody()));

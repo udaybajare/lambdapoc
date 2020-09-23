@@ -13,6 +13,6 @@ import java.util.HashMap;
 @NoArgsConstructor
 public class APIRequest
 {
-    private HashMap<String, String> params;
+    private HashMap<String, Object> params;
     private String templateName;
 }
